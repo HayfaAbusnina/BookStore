@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BookStore.Domain.Entities.Book>
+
+@{
+    ViewBag.Title = "Admin Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/ErrorStyle.css" rel="stylesheet" />
+</head>
+<body>
+    <div> 
+        <h2>Administration Page</h2>
+        <p>@Html.ActionLink("Create New","Create")</p>
+        <table class="table">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Title)</th>
+                <th>@Html.DisplayNameFor(model => model.Description)</th>
+                <th>@Html.DisplayNameFor(model => model.Price)</th>
+                <th>@Html.DisplayNameFor(model => model.Specialization)</th>
+            </tr>
+
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => item.Title)</td>
+                    <td>@Html.DisplayFor(model => item.Description)</td>
+                    <td>@Html.DisplayFor(model => item.Price)</td>
+                    <td>@Html.DisplayFor(model => item.Specialization)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit",new { isbn=item.ISBN}) |
+                        @Html.ActionLink("Details", "Details", new { isbn = item.ISBN }) |
+                        @Html.ActionLink("Delete", "Delete", new { isbn = item.ISBN }) 
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

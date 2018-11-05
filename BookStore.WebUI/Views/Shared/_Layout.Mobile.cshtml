@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" /> -->
+    <link rel="stylesheet" href="~/Content/jquery.mobile-1.3.2.min.css" />
+   <!-- <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> -->
+   <!-- <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>  -->
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/jquery.mobile-1.3.2.min.js"></script>
+</head>
+<body>
+    <div>
+        <div data-role="page" id="page1">
+          @*  <div data-theme="a" data-role="header" data-position="fixed">  @* تغيير لون الهيدر للاسود *@
+           <div data-theme="true" data-role="header" data-position="fixed"> @*data-theme="a"*@
+                <h3>Bookstore</h3>
+                @Html.Action("Menu", "Nav")
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" data-dividertheme="b" data-inset="false"> @*data-inset="false"  تتحكم في عرض الخط*@
+                    @RenderBody()
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

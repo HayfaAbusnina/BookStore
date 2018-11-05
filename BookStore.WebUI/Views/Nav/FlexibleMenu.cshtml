@@ -1,0 +1,36 @@
+﻿@model IEnumerable<string>
+    
+@{ 
+    bool horizontal = (bool)(ViewContext.RouteData.Values["mobileLayout"] ?? false);
+
+    string wrapperClasses = horizontal ? "btn-group btn-group-sm btn-group-justified" : null;
+
+    string Strstyle = (horizontal ? "display:inline-block;":"display:block;"); //**********
+}
+
+<div class="@wrapperClasses">
+    <ul style="list-style-type:none">@************@
+            <li style="@Strstyle">            @************@
+            @Html.ActionLink("Home", "List", "Book", null,
+            new
+            {
+                @class = horizontal ? "btn btn-default btn-sm" :
+                                      "btn btn-block btn-default btn-lg"
+            })
+        </li> @************@
+
+            @foreach (var link in Model)
+            {
+                <li style="@Strstyle">  @************@
+                    @Html.RouteLink(link, new { controller = "Book", action = "List", specialization = link, pageno = 1 },
+                  new
+                  {
+                      @class = (horizontal ? "btn btn-default btn-sm" : "btn btn-block btn-default btn-lg ") +
+                       ((link == ViewBag.SelectedSpec) ? "btn-primary" : "").ToString(),
+                      @style = "overflow:hidden;text-overflow:ellipsis;" /*في حالة الكلمة طويلة لعمل نقاط*/
+                  })
+                    
+                </li>        @************@
+            }
+    </ul>@************@
+</div>

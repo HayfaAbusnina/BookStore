@@ -1,0 +1,78 @@
+﻿@model IEnumerable<BookStore.Domain.Entities.Book>
+
+@{
+    ViewBag.Title = "Admin: All Books";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Book Index</h2>
+
+<div class="panel panel-default" >
+    <div class="panel-heading">
+        <h3>All Books</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-condensed table-striped table-bordered">
+            @*table-condensed تنقص المسافات بين صفوف الجدول*@
+            @*table-striped تجعل صفوف الجدول لون بلون*@
+            @*table-bordered يعمل حدود للجدول*@
+            <tr>
+                <th class="text-right">
+                    ID
+                    @*@Html.DisplayNameFor(model => model.ISBN)*@
+                </th>
+                <th>
+                    Title
+                    @*@Html.DisplayNameFor(model => model.Title)*@
+                </th>
+                <th >
+                    Description
+                    @*@Html.DisplayNameFor(model => model.Description)*@
+                </th>
+                <th class="text-right">
+                    Price
+                    @*@Html.DisplayNameFor(model => model.Price)*@
+                </th>
+                <th>
+                    Specialization
+                    @*@Html.DisplayNameFor(model => model.Specialization)*@
+                </th>
+                <th>Actions</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-right">
+                        @Html.DisplayFor(modelItem => item.ISBN)
+                    </td>
+                    <td class="">
+                        @Html.ActionLink(item.Title,"Edit",new { item.ISBN})
+                        @*@Html.DisplayFor(modelItem => item.Title)*@
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td class="text-right">
+                        @item.Price.ToString("c")
+                       @* @Html.DisplayFor(modelItem => item.Price) can use both *@
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Specialization)
+                    </td>
+                    <td class="text-center">
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.ISBN }) |*@
+                        @*@Html.ActionLink("Details", "Details", new { id = item.ISBN }) |*@
+                        @Html.ActionLink("Delete", "Delete", new { ISBN = item.ISBN },new { @class="btn btn-danger btn-xs"})
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+    <div class="panel-footer">
+        @Html.ActionLink("Add New Book", "Create", null,new { @class = "btn btn-default btn-xs"})
+    </div>
+
+</div>
